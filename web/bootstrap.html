@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Last Words</title>
+    
+    <!-- Bootstrap -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+     var numEmails = 1;
+     function placeHolder(n) {
+       switch(n) {
+	 case 1:
+	   return 'placeholder="Deliver to:"';
+	   break;
+	 case 2:
+	   return 'placeholder="and to"';
+	   break;
+	 case 3:
+	   return 'placeholder="as well as"';
+	   break;
+	 case 4:
+	   return 'placeholder="along with"';
+	   break;
+	 default:
+	   return 'placeholder="and"';
+       }
+     }
+     
+     function emailField(n) {
+       return '<input class="form-control"\
+                      type="email"\
+                      id="email_id_' + String(n) +
+		      '"name="email"' +
+                      placeHolder(n) + '>'
+     }
+     $(document).ready(function(){
+       $("#add").click(function(){
+	 numEmails++;
+	 $(emailField(numEmails)).insertBefore("#add");
+       });
+       $('#cancel_id').click(function(){
+	 $('[id^=pw]').toggle(this.checked);
+       });
+       $('#DayToggle').click(function(){
+	 
+       });
+     });
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="MainText" class="jumbotron">
+	<h1>LastWords.com
+	</h1>
+	<h2>If you're reading this, then I'm already dead...</h2>
+      </div>
+      <form role="form"
+	    id="inputForm"
+	    onsubmit="return Submit();">
+	<div class="form-group">
+	  <label class="sr-only" for="message_id">Message:</label>
+	  <textarea class="form-control"
+		    id="message_id"
+		    form="inputForm"
+		    placeholder="The message you want delivered"
+		    rows="8"
+		    ></textarea>
+	</div>
+	<div class="form-group">
+	  <div class= "form-inline">
+	    <label class="sr-only" for="email_id">Email: </label>
+	    <input class="form-control"
+		   type="email"
+		   id="email_id"
+		   name="email"
+		   placeholder="Deliver to:">
+	    <button id="add"
+		    type="button"
+		    class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+	  </div>
+	  <div class= "form-inline">
+	    <label for="cancel_id">Do you want to be able to cancel this message?</label>
+	    <input class="form-control"
+		   type="checkbox"
+		   name="cancellable"
+		   id="cancel_id">
+	  </div>
+	  <input id="pw1"
+		 class="form-control"
+		 type="password"
+		 style="display:none"
+		 placeholder="Enter a password">
+	  <input id="pw2"
+		 class="form-control"
+		 type="password"
+		 style="display:none"
+		 placeholder="Now enter it again">
+	  <label for="Schedules">Configure your checkin methods:</label>
+	  <ul class="list-group" name="Schedules">
+	    <li class="list-group-item">
+	      <input id="send_email_1" type="email" class="form-control" placeholder="Email to send checkin to">
+	      <div class="btn-group">
+		<button id="DayToggle_1" type="button" class="btn btn-default">Daily</button>
+		<button id="HourToggle_1" type="button" class="btn btn-default">Hourly</button>
+	      </div>
+	    </li>
+	    <li class="list-group-item">
+	      <button id="add"
+		      type="button"
+		      class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+	    </li>
+	  </ul>
+	</div>
+	<input type="submit" value="Submit">
+      </form>
+    </div>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
